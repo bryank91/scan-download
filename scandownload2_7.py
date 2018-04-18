@@ -11,7 +11,7 @@ import requests, sys, webbrowser, bs4, urllib2, re
 #print 'Argument List:', str(sys.argv)
 
 if (len(sys.argv) < 2) :
-	print('Only accepts a argument eg. ./scandownload.py <blah>')
+	print('Only accepts a argument eg. ./scandownload.py <blah> <episode> <filetype>')
 	sys.exit()
 
 argv = sys.argv
@@ -28,27 +28,39 @@ soup = bs4.BeautifulSoup(res.text,'html.parser')
 if 1: 
 	for link in soup.find_all('a', {'class':'download_1'}):
 		thisLink = link.get('href')
-		# print(thisLink)		
 
 		# need to find this link whether it contains magnet and matches the right string from the latest episode
-		if 1:
 		# if re.search('magnet',thisLink):
-			print("Found torrent link: \n" + thisLink + "\n")
-				
-			# only if you checked magnets 
-			#searchArray = re.search('magnet',link.get('href'))
-		        #print(searchArray)
+
+		if 1:
+			if argv[2] and argv[3]: # only filetype is defined argv is defined
+				if argv[2] in thisLink:
+					if argv[3] in thisLink:
+						print("Found torrent link: \n" + thisLink + "\n")
+			elif argv[2]:
+				if argv[2] in thisLink:
+					print("Found torrent link: \n" + thisLink + "\n")
+					
+			else:
+				print("Found torrent link: \n" + thisLink + "\n")
 		
-			r = requests.get(thisLink)
-			with open("filename.torrent", "wb") as code:
-			    code.write(r.content)
-			print("Download Complete!");
+			# once found, further refine by displaying size and season	
+			
+			if 0:	
+				# only if you checked magnets 
+				#searchArray = re.search('magnet',link.get('href'))
+				#print(searchArray)
+		
+				r = requests.get(thisLink)
+				with open("/tmp/filename.torrent", "wb") as code:
+				    code.write(r.content)
+				print("Download Complete!");
 	
 
-			# lets exit on first one only
-			sys.exit()
+				# lets exit on first one only
+				# sys.exit()
 		
 
 
 # back tick these functions next time
-# transmission-remote -n 'transmission:transmission' -a /var/lib/transmission-daemon/downloads/files.torrent	
+# transmission-remote -n 'bryan:bryan' -a /var/lib/transmission-daemon/downloads/files.torrent	
