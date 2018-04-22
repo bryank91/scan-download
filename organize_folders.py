@@ -46,21 +46,21 @@ for fromfolder in os.listdir():
         print(showtitle)
 
 
-if (1):	
-    os.chdir(TVSHOWDIR)
-    for tofolder in os.listdir():
-        if showtitle in tofolder:
-            print("Success: Found in" + TVSHOWDIR + "/" + showtitle)
+        if (1):	
+            os.chdir(TVSHOWDIR)
+            for tofolder in os.listdir():
+                if showtitle in tofolder:
+                    print("Success: Found in" + TVSHOWDIR + "/" + showtitle)
 
-            fromdir = DOWNLOADDIR + "/" + fromfolder;
+                    fromdir = DOWNLOADDIR + "/" + fromfolder;
 
-            # we need to escape the folder
-            showtitleescape = showtitle.replace(" ","\ ")
-            todir = TVSHOWDIRESCAPE + "/" + showtitleescape + "/" + fromfolder
+                    # we need to escape the folder
+                    showtitleescape = showtitle.replace(" ","\ ")
+                    todir = TVSHOWDIRESCAPE + "/" + showtitleescape + "/" + fromfolder
 
-            # os.rename(DOWNLOADDIR + "/" + fromfolder, TVSHOWDIR + "/" + fromfolder)
-            print("Trying to move" + fromdir + " TO " + todir )
-            # shutil.copyfile(fromdir,todir)
-            print('cp ' + fromdir + ' ' + todir)
-            os.popen('cp ' + fromdir + ' ' + todir).read()
+                    # os.rename(DOWNLOADDIR + "/" + fromfolder, TVSHOWDIR + "/" + fromfolder)
+                    print("Trying to move" + fromdir + " TO " + todir )
+                    # shutil.copyfile(fromdir,todir)
+                    print('cp ' + fromdir + ' ' + todir)
+                    os.popen('cp ' + fromdir + ' ' + todir).read()
                 
