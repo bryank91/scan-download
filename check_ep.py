@@ -33,7 +33,7 @@ def printCSV(csvfile,filename,location):
         arraylen = len(filename)
 
         for val in range(0,arraylen):
-            writer.writerow([filename[val],location[val]])    
+            writer.writerow([filename[val],location[val],identifyEp(filename[val])])    
 
     #Assuming res is a list of lists (Might be updated to support this in the future
     if 0:
@@ -42,6 +42,16 @@ def printCSV(csvfile,filename,location):
             writer.writerows(res)
 
     return 0
+
+def identifyEp(filename):
+	filearray = filename.split(".")
+	for i in filearray:
+		print(i + " - " + i[:1] + " - " +  i[1:2])
+		if i[:1] is "S" and i[1:2].isdigit() is True:
+			print("Pass")
+			return i
+			
+	return 0	
 
 def main():
 
@@ -53,7 +63,5 @@ def main():
     
     printCSV('output.csv',filename,location)
 
-    for x in filename:
-        print(x)
 
 main()
