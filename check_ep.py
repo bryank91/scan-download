@@ -33,8 +33,7 @@ def printCSV(csvfile,filename,location):
         arraylen = len(filename)
 
         for val in range(0,arraylen):
-            writer.writerow(filename[val])    
-            writer.writerow(location[val])    
+            writer.writerow([filename[val],location[val]])    
 
     #Assuming res is a list of lists (Might be updated to support this in the future
     if 0:
