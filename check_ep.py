@@ -53,15 +53,35 @@ def identifyEp(filename):
 			
 	return 0	
 
+def getLatestEpisode(filename,findstring):
+	
+	episodedigitarray = []
+	
+	with open(filename, "r") as output:
+		csv_file = csv.reader(output, delimiter=",")
+	
+		for row in csv_file:
+			if row[0].startswith(findstring) == True:
+				episode = row[2][4:6]
+				season = row[2][1:3]
+				episodedigit = str(season) + str(episode);
+				episodedigitarray.append(int(episodedigit))
+
+	return(max(episodedigitarray))	
+				
+
 def main():
 
     # init
     filename = [];
     location = [];
 
-    (location,filename) = CheckEpisodes(TVSHOWDIR,location,filename)
+    # (location,filename) = CheckEpisodes(TVSHOWDIR,location,filename)
     
-    printCSV('output.csv',filename,location)
+    # printCSV('output.csv',filename,location)
+    answer = getLatestEpisode('output.csv','Young.Sheldon')
+    print(answer)
+
 
 
 main()
