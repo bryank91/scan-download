@@ -67,7 +67,8 @@ def getLatestEpisode(filename,findstring):
 				episode = row[2][4:6]
 				season = row[2][1:3]
 				episodedigit = str(season) + str(episode)
-				episodedigitarray.append(int(episodedigit))
+				if (episodedigit):
+					episodedigitarray.append(int(episodedigit))
 
 	return(max(episodedigitarray))
 
@@ -80,10 +81,10 @@ def main():
     # (location,filename) = CheckEpisodes(TVSHOWDIR,location,filename)
     
     # printCSV('output.csv',filename,location)
-    argv = sys.argv
-    answer = getLatestEpisode('output.csv',argv[1])
-    print(answer)
+    # argv = sys.argv
+    # answer = getLatestEpisode('output.csv',argv[1])
+    # print(answer)
 
 
 
-main()
+# main()
