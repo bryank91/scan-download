@@ -39,7 +39,6 @@ def printCSV(csvfile,filename,location):
     if 0:
         with open(csvfile, "w") as output:
             writer = csv.writer(output, lineterminator='\n')
-            writer.writerows(res)
 
     return 0
 
@@ -61,25 +60,28 @@ def getLatestEpisode(filename,findstring):
 		csv_file = csv.reader(output, delimiter=",")
 	
 		for row in csv_file:
+
+			row[0] = row[0].lower()
 			if row[0].startswith(findstring) == True:
+
 				episode = row[2][4:6]
 				season = row[2][1:3]
-				episodedigit = str(season) + str(episode);
+				episodedigit = str(season) + str(episode)
 				episodedigitarray.append(int(episodedigit))
 
-	return(max(episodedigitarray))	
-				
+	return(max(episodedigitarray))
 
 def main():
 
     # init
-    filename = [];
-    location = [];
+    filename = []
+    location = []
 
     # (location,filename) = CheckEpisodes(TVSHOWDIR,location,filename)
     
     # printCSV('output.csv',filename,location)
-    answer = getLatestEpisode('output.csv','Young.Sheldon')
+    argv = sys.argv
+    answer = getLatestEpisode('output.csv',argv[1])
     print(answer)
 
 
