@@ -45,9 +45,9 @@ def printCSV(csvfile,filename,location):
 def identifyEp(filename):
 	filearray = filename.split(".")
 	for i in filearray:
-		print(i + " - " + i[:1] + " - " +  i[1:2])
+		#print(i + " - " + i[:1] + " - " +  i[1:2])
 		if i[:1] is "S" and i[1:2].isdigit() is True:
-			print("Pass")
+			#print("Pass")
 			return i
 			
 	return 0	
@@ -69,6 +69,7 @@ def getLatestEpisode(filename,findstring):
 				episodedigit = str(season) + str(episode)
 				if (episodedigit):
 					episodedigitarray.append(int(episodedigit))
+	# improve on by displaying S and E
 
 	return(max(episodedigitarray))
 
